@@ -44,6 +44,12 @@ const STATUS_CLASS = {
 const TasksTable = ({ tasks, onEdit, onRefresh }) => {
 
   const handleDelete = async (id) => {
+    const confirmed = window.confirm(
+      'Are you sure you want to delete this task? This action cannot be undone.'
+    );
+
+    if (!confirmed) return;
+
     try {
       await deleteTask(id);
       onRefresh();
