@@ -17,7 +17,6 @@ const taskSchema = new mongoose.Schema(
         'Submitted',
         'Approved',
         'Rejected',
-        'Completed',
       ],
     },
     assignedTo: {

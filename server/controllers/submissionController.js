@@ -96,9 +96,9 @@ const reviewSubmission = async (req, res) => {
     if (!submission) {
       return res.status(404).json({ message: 'Submission not found' });
     }
-    if (reviewStatus === 'Approved') {
+    if (reviewStatus === 'Approved' || reviewStatus === 'Rejected') {
       await Task.findByIdAndUpdate(submission.taskId._id, {
-        status: 'Completed',
+        status: reviewStatus,
       });
     }
     // — task stays 'Submitted' even after the submission is Approved/Rejected
