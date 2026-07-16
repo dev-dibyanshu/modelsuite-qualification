@@ -11,7 +11,14 @@ const taskSchema = new mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ['Open', 'Claimed', 'Submitted', 'Approved', 'Rejected'],
+      enum: [
+        'Open',
+        'Claimed',
+        'Submitted',
+        'Approved',
+        'Rejected',
+        'Completed',
+      ],
     },
     assignedTo: {
       type: mongoose.Schema.Types.ObjectId,
