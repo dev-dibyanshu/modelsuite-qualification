@@ -39,7 +39,11 @@ const getTaskById = async (req, res) => {
 // @access Admin
 const createTask = async (req, res) => {
   const { title, description, status, assignedTo, dueDate } = req.body;
-
+  if (!title?.trim() || !description?.trim()) {
+    return res.status(400).json({
+      message: 'Title and description are required',
+    });
+  }
   try {
     const task = await Task.create({
       title,
