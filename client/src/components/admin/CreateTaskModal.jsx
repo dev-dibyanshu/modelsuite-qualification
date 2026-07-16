@@ -1,4 +1,6 @@
 ﻿import { useState } from 'react';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { createTask, fetchTalents } from '../../api/tasks';
 
 const STATUS_OPTIONS = ['Open', 'Claimed', 'Submitted', 'Approved', 'Rejected'];
@@ -55,8 +57,19 @@ const CreateTaskModal = ({ onClose, onCreated }) => {
 
           <div className="flex flex-col gap-1.5">
             <label className={labelCls}>Description</label>
-            <textarea name="description" value={form.description} onChange={handleChange}
-              rows={3} placeholder="Describe the task deliverables..." className={inputCls} />
+            <div className="border border-border rounded-lg overflow-hidden">
+              <CKEditor
+                editor={ClassicEditor}
+                data={form.description}
+                onChange={(event, editor) => {
+                  const data = editor.getData();
+                  setForm((prev) => ({
+                    ...prev,
+                    description: data,
+                  }));
+                }}
+              />
+            </div>
           </div>
 
           <div className="grid grid-cols-2 gap-4">

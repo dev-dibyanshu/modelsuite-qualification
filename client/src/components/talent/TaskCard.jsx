@@ -34,7 +34,10 @@ const TaskCard = ({ task, showClaimButton = false, onClaimed }) => {
 
       
       {task.description && (
-        <p className="text-[13px] text-text-muted leading-relaxed">{task.description}</p>
+        <div
+          className="text-[13px] text-text-muted leading-relaxed"
+          dangerouslySetInnerHTML={{ __html: task.description }}
+        />
       )}
 
       {/* Meta row */}

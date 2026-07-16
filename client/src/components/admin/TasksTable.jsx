@@ -91,9 +91,11 @@ const TasksTable = ({ tasks, onEdit, onRefresh }) => {
                   {task.title || '—'}
                 </span>
                 {task.description && (
-                  <span className="block truncate" style={{ color: '#4B5563', fontSize: '12px', maxWidth: '240px' }}>
-                    {task.description}
-                  </span>
+                  <div
+                    className="block truncate"
+                    style={{ color: '#4B5563', fontSize: '12px', maxWidth: '240px' }}
+                    dangerouslySetInnerHTML={{ __html: task.description }}
+                  />
                 )}
               </td>
 
